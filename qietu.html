@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/qietu.css">
+</head>
+<body>
+    <div class="main">
+        <div class="head1">
+            <img class="pic1" src="img/1.jpg">
+        </div>
+        <div class="head2">
+            <div class="head2_left">
+                <img class="pic4" src="img/4.png">
+            </div>
+            <div class="head2_right">
+                <div class="r_1">
+                    Home：：
+                </div>
+                <div class="r_2">
+                    Destinations
+                </div>
+                <div class="r_3">
+                    Criuses
+                </div>
+                <div class="r_3">
+                    Specils
+                </div>
+                <div class="r_2">
+                    Holidays
+                </div>
+                <div class="r_3">
+                    Blog
+                </div>
+                <div class="r_2">
+                    <img src="img/5.jpg">
+                </div>
+            </div>
+        </div>
+        <div class="head3">
+            <div class="h3_main">
+                    <div class="box" id="box">
+                            <div class="inner">
+                                <ul>
+                                    <li><a href="#"><img src="img/6.JPG" alt=""></a></li>
+                                    <li><a href="#"><img src="img/7.JPG" alt=""></a></li>
+                                    <li><a href="#"><img src="img/8.JPG" alt=""></a></li>
+                                    <li><a href="#"><img src="img/9.JPG" alt=""></a></li>
+                                    <li><a href="#"><img src="img/10.JPG" alt=""></a></li>
+                         
+                                </ul>
+                         
+                                <ol class="bar">
+                         
+                                </ol>
+                                <div id="arr">
+                                            <span id="left">
+                                                <
+                                            </span>
+                                    <span id="right">
+                                                >
+                                            </span>
+                                </div>
+                         
+                            </div>
+                        </div>
+                        <script>
+                            function my$(id) {
+                                return document.getElementById(id);
+                            }
+                         
+                            var box=my$("box");
+                            var inner=box.children[0];
+                            var ulObj=inner.children[0];
+                            var list=ulObj.children;
+                            var olObj=inner.children[1];
+                            var arr=my$("arr");
+                            var imgWidth=inner.offsetWidth;
+                            var right=my$("right");
+                            var pic=0;
+                            for(var i=0;i<list.length;i++){
+                                var liObj=document.createElement("li");
+                         
+                                olObj.appendChild(liObj);
+                                liObj.innerText=(i+1);
+                                liObj.setAttribute("index",i);
+                         
+                                liObj.onmouseover=function () {
+                         
+                                    for (var j=0;j<olObj.children.length;j++){
+                                        olObj.children[j].removeAttribute("class");
+                                    }
+                                    this.className="current";
+                                    pic=this.getAttribute("index");
+                                    animate(ulObj,-pic*imgWidth);
+                                }
+                         
+                            }
+                         
+                         
+                            olObj.children[0].className = "current";
+                            ulObj.appendChild(ulObj.children[0].cloneNode(true));
+                         
+                            var timeId=setInterval(onmouseclickHandle,1000);
+                            box.onmouseover=function () {
+                                arr.style.display="block";
+                                clearInterval(timeId);
+                            };
+                            box.onmouseout=function () {
+                                arr.style.display="none";
+                                timeId=setInterval(onmouseclickHandle,1000);
+                            };
+                         
+                            right.onclick=onmouseclickHandle;
+                            function onmouseclickHandle() {
+                                if (pic == list.length - 1) {
+                                    pic = 0;
+                                    ulObj.style.left = 0 + "px";
+                                }
+                                pic++;
+                                animate(ulObj, -pic * imgWidth);
+                                if (pic == list.length - 1) {
+                                    olObj.children[olObj.children.length - 1].className = "";
+                                    olObj.children[0].className = "current";
+                                } else {
+                                    for (var i = 0; i < olObj.children.length; i++) {
+                                        olObj.children[i].removeAttribute("class");
+                                    }
+                                    olObj.children[pic].className = "current";
+                                }
+                            }
+                            left.onclick=function () {
+                                if (pic==0){
+                                    pic=list.length-1;
+                                    ulObj.style.left=-pic*imgWidth+"px";
+                                }
+                                pic--;
+                                animate(ulObj,-pic*imgWidth);
+                                for (var i = 0; i < olObj.children.length; i++) {
+                                    olObj.children[i].removeAttribute("class");
+                                }
+                                olObj.children[pic].className = "current";
+                            };
+                         
+                            function animate(element, target) {
+                                clearInterval(element.timeId);
+                                element.timeId = setInterval(function () {
+                                    var current = element.offsetLeft;
+                                    var step = 10;
+                                    step = current < target ? step : -step;
+                                    current += step;
+                                    if (Math.abs(current - target) > Math.abs(step)) {
+                                        element.style.left = current + "px";
+                                    } else {
+                                        clearInterval(element.timeId);
+                                        element.style.left = target + "px";
+                                    }
+                                }, 20);
+                            }
+                        </script>
+
+                <img class="pic2" src="img/2.jpg">
+            </div>
+            
+        </div>
+        <div class="center1">
+            <div class="c1_t">
+                <div class="t_m">
+                    <div class="m_t">
+                        <strong>SPECIAL OFFERS</strong>
+                    </div>
+                    <div class="m_b">
+                        Best 2014 packages where people love to stay!
+                    </div>
+                </div>
+            </div>
+            <div class="c1_b">
+                <div class="b1">
+                    <img class="pic6" src="img/6.png">
+                </div>
+                <div class="b1">
+                    <img class="pic6" src="img/7.png">
+                </div>
+                <div class="b1">
+                    <img class="pic7" src="img/8.png">
+                </div>
+                <div class="b1">
+                    <img class="pic6" src="img/9.png">
+                </div>
+                <div class="b1">
+                    <img class="pic6" src="img/10.png">
+                </div>
+                <div class="b1">
+                    <img class="pic6" src="img/11.png">
+                </div>
+            </div>
+        </div>
+        <div class="center2">
+            <img class="pic3" src="img/3.jpg">   
+        </div>
+        <div class="center3">
+            <div class="center3_t">
+                <div class="c3t_t">
+                    HAPPY CLIENTS
+                </div>
+                <div class="c3t_b">
+                    what customer say about us and why love our services!
+                </div>
+            </div>
+            <div class="center3_b">
+                <img class="pic21" src="img/21.jpg">
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="b_t">
+                <div class="bt1">
+                    <div class="bt1_m">
+                        <div class="btm_1">
+                            <img src="img/12.png"> 
+                            <div class="m_1c">
+                                Duis autem vel eum iriure dolor in
+                                hendrerit in vulputate velit esse
+                                molestie consequat,vel illum dolore
+                            </div>
+                            <div class="m_1b">
+                                <input class="deng" type="text" value="Subscribes" onfocus="javascript:this.value=''" />
+                                <button class="go">GO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bt2">
+                    <div class="btm_2">
+                        <div class="m2_t">
+                            <img src="img/13.png"> 
+                        </div>
+                        <div class="m2_c">
+                            <img  class="pic14" src="img/14.png"> 
+                            <div class="mc_lt">
+                                <div class="ltt">
+                                    Postformat Gallery:Multiple images
+                                </div>
+                                <div class="ltb">
+                                    October 21,2013-3:31pm
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m2_b">
+                            <img  class="pic15" src="img/15.png"> 
+                            <div class="mb_lt">
+                                <div class="lbt">
+                                    Snowboarding is fun!
+                                </div>
+                                <div class="lbb">
+                                    December 12,2012-9:11pm
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>                  
+                </div>
+                <div class="bt3">
+                    <img  class="pic16" src="img/16.png"> 
+                    <div class="container">
+                        <div class="item-1">Agent Login</div>
+                        <div class="item-2"></div>
+                        <div class="item-3">Customer</div>
+                        <div class="item-4"></div>
+                        <div class="item-5">Not a Member</div>
+                        <div class="item-6"></div>
+                        <div class="item-7">Content</div>
+                        <div class="item-8"></div>
+                        <div class="item-9">New Horizons</div>
+                        <div class="item-10"></div>
+                        <div class="item-11">scape</div>
+                        <div class="item-12">Tags</div>
+                        <div class="item-13">Nice</div>
+                        <div class="item-14">Some</div>
+                        <div class="item-15">Portrait</div>
+                        <div class="item-16"></div>
+                    </div>
+                </div>
+                <div class="bt4">
+                    <div class="bt4_m">
+                        <img src="img/17.png">
+                        <div class="btm_b">
+                            <div class="bt4_ct">
+                                <div class="ct_t">
+                                    DieSachbearbeiter Schönhauser Allee
+                                    167c,10435 Berlin Germany
+                                 </div>
+                                <div class="ct_b">
+                                    <div class="ct_bl">
+                                        E-mail:
+                                    </div>
+                                    <div class="ct_br">
+                                        moin@blindtextgenerator.de
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bt4_cb">
+                                <img src="img/18.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="b_b">
+                <div class="bb_t">
+                    <img class="pic19" src="img/19.png">
+                    <p class="p1">
+                        Copyright @voyage.All Right Reserved.
+                    </p>
+                </div>
+                <div class="bb_b">
+                    <img src="img/20.jpg">
+                </div>
+            </div>
+        </div>
+      
+    </div>
+     
+</body>
+</html>
